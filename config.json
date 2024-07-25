@@ -1,0 +1,59 @@
+{
+  "name": "SGCC Electricity",
+  "version": "1.0",
+  "slug": "sgcc_electricity",
+  "description": "A Home Assistant add-on for SGCC Electricity.",
+  "arch": ["amd64", "armhf", "armv7"],
+  "startup": "application",
+  "boot": "auto",
+  "image": "arcw/sgcc_electricity:latest",
+  "environment": {
+    "SET_CONTAINER_TIMEZONE": "true",
+    "CONTAINER_TIMEZONE": "Asia/Shanghai"
+  },
+  "options": {
+    "phone_number": "18381068880",
+    "password": "myhoney1119",
+    "enable_database_storage": true,
+    "db_name": "homeassistant.db",
+    "hass_url": "http://localhost:8123/",
+    "hass_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI5ZDI2ODJkMjU1MmM0NjdkODNmN2I3MDRmMjllYzc3YiIsImlhdCI6MTcyMTgxMDY2OSwiZXhwIjoyMDM3MTcwNjY5fQ.-z27701li1ZhkBjNI8R_hsCbyBf6GfeMy8G-K-to6FY",
+    "job_start_time": "07:00",
+    "driver_implicity_wait_time": 60,
+    "retry_times_limit": 5,
+    "login_expected_time": 60,
+    "retry_wait_time_offset_unit": 10,
+    "log_level": "INFO",
+    "data_retention_days": 30,
+    "recharge_notify": false,
+    "balance": 5.0,
+#   "pushplus_token": "xxxxxxx,xxxxxxx,xxxxxxx"
+  },
+  "schema": {
+    "phone_number": "str",
+    "password": "str",
+    "enable_database_storage": "bool",
+    "db_name": "str",
+    "hass_url": "str",
+    "hass_token": "str",
+    "job_start_time": "str",
+    "driver_implicity_wait_time": "int",
+    "retry_times_limit": "int",
+    "login_expected_time": "int",
+    "retry_wait_time_offset_unit": "int",
+    "log_level": "str",
+    "data_retention_days": "int",
+    "recharge_notify": "bool",
+    "balance": "float",
+    "pushplus_token": "str"
+  },
+  "ports": {
+    "8080/tcp": 8080
+  },
+  "volumes": [
+    "config:/app",
+    "scripts:/app/scripts"
+  ],
+  "webui": "http://[HOST]:[PORT]",
+  "restart_policy": "unless-stopped"
+}
